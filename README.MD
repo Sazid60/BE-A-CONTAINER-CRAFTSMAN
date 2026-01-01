@@ -193,3 +193,15 @@ or
 
 ---
 
+# 1-1 Get Started With Docker
+- Its all about making a complex application portable so that it can be run in any environment without any compatibility issues.
+
+# 1-2 What is Docker & Why?
+- Docker is a container technology. A Tool For Creating and Managing Container.
+
+ ### What is Container? 
+   - **Container is a Standardized Unit of software** : A Package of code and dependencies to run that code( eg. nodejs code  + nodejs runtime + tools  + environment) 
+    #### Why Container? 
+     - When we do a code contenization , The same container always yields the exact same application and execution behaviour! No matter where or by whome it might be executred. 
+
+- If we have docker in my machine then we do not think about which version and dependencies are installed in my machine. Because docker container has its own dependencies and version.
