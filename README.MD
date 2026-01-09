@@ -276,3 +276,128 @@ docker --version
 docker --help
 ```
 - this will show all docker commands 
+
+## 1-7 Docker Installation [Linux]
+
+- Leyts install docker in ubuntu 
+
+[manual](https://docs.docker.com/manuals)
+
+- the confusion is what should we install? docker engine or docker desktop.
+- Docker engine is the thing that docker runs behind the scene (docker core)
+- Docker Descktop is just a Docker GUI 
+- The situation is like we are connection with the server through terminal in here docker engine is required. 
+- If we want to see in gui then we will use the docker desktop 
+
+- first we will install the engine 
+
+### Installation Steps 
+
+- we need to install genome terminal for this 
+
+[docker-for-ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+
+
+```
+sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
+```
+
+- clear all dependencies 
+
+```
+# Add Docker's official GPG key:
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+sudo apt update
+```
+
+- Install the latest version 
+
+```
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+
+
+- lets check
+
+```
+docker --version
+```
+- see the running process
+
+```
+sudo docker ps 
+```
+
+```
+sudo docker run hello-world
+```
+
+- First it will see if available it will run if not available it will try to pull 
+
+- Docker engine installion done 
+
+#### Lets install the gui for ubuntu 
+
+[GUI-INSTLLATION](https://docs.docker.com/desktop/setup/install/linux/ubuntu/)
+
+- install the genome terminal 
+
+```
+sudo apt install gnome-terminal
+```
+
+- download the DEB package 
+
+```
+sudo apt-get update
+sudo apt-get install ./docker-desktop-amd64.deb
+```
+
+- then from the forlder open the terminal and install it 
+
+```
+sudo apt-get install ./docker-desktop-amd64.deb
+```
+
+
+- By default we wneed to write 
+
+```
+sudo docker ps 
+```
+
+- if we write only 
+
+```
+docker ps
+```
+- it will not run 
+
+- if it does not run even after writing sudo we have to write 
+
+
+```
+sudo dockerd
+```
+- this will run the docker demon 
+
+-  by default docker gets bind with the unix socket for this reason it is just accessable with the root user only 
+
+- so we need to do some post installtion if we need to run the docker in pc startup
+
+[post-intallations](https://docs.docker.com/engine/install/linux-postinstall/)
