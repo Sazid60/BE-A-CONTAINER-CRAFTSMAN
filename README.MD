@@ -204,4 +204,11 @@ or
     #### Why Container? 
      - When we do a code contenization , The same container always yields the exact same application and execution behaviour! No matter where or by whome it might be executred. 
 
-- If we have docker in my machine then we do not think about which version and dependencies are installed in my machine. Because docker container has its own dependencies and version.
+- If I have docker in my machine then we do not think about which version and dependencies are installed in my machine. Because docker container has its own dependencies and version.
+
+# 1-3 Virtual Machine vs. Docker Containers
+
+-  Virtual Machine Is a machine that runs virtually on top of host operating system. This is one kind of physical computer but this has no existance.
+-  Suppose we have both linux and windows. both works seperaterly and has no communication between them. The virtual machine works in the same isoloated way.
+-  we can do the works of docker using virtual machine. Its like we have created a project in virtual machine and shared within the employyes and they will will run the project in the same virtual machine. 
+-  *Then why we do not use virtual machine instead of docker?* : We can create a project keep the libraries dependencies tols and shate the os. The problem is we can  create one project in one virtual machine but we need to work in multiple projects and for each project we need one virtual machine which will cause storage shortage.*How Docker helps?* : docker works in the same way in our operating system using docker engine. The key differences in docker is not creating any seperate operating system. for this reason storage for operating system is not required. Basically for a project we are making a container and string the libraries tools and dependencies and the container will hold the project. we can create multiple container for multiple projects and share to everyone in form of **image** which is docker term. when a project is not needed we can delete the container. again we can get the project project by using the image. In case of virtual machine if we delete a project we will have to build the same project in the virtual machine from scratch. 
