@@ -410,3 +410,67 @@ sudo dockerd
 - For sharing works with the teammates **Docker Hub**. This for collaboritive works like github
 - A project might have frontend and backend, database container. For keeping all in a manageable state we use **Docker Compose**
 
+## 1-9 Configuring VS Code & Creating The First Container
+
+- lets do the magic with the docker 
+
+
+```
+Dockerfile
+```
+- add docker file in root 
+
+- inside the file
+
+#### Use the official Node.js 20 image as the base image
+FROM node:20
+
+#### Set the working directory inside the container
+#### All subsequent commands will run from this directory
+WORKDIR /app
+
+#### Copy only package.json first
+#### This allows Docker to cache npm install if dependencies don’t change
+COPY package.json .
+
+#### Install all project dependencies
+RUN npm install
+
+#### Copy the rest of the application source code
+COPY . .
+
+#### Expose port 5000 to allow external access to the app
+EXPOSE 5000
+
+#### Define the command to start the application
+#### Runs app.mjs using Node.js when the container starts
+CMD ["node", "app.mjs"]
+
+
+- now make a image for the container 
+
+
+```
+docker build .  
+```
+- we have to define the port that means using the 5000 port run inside the container 
+- Containetr is an isolated environment and with the container our system has not connection 
+- To communicate with the container we have to define the port that server should run 
+![alt text](image-1.png)
+
+
+- using the image id run the project 
+
+```
+docker run -p 5000:5000 sha256:d029c9c813f65cf837a542f0c5296bf5bef106fb8f496b70e422c7721984045f
+```
+- -p represents the port connection 
+
+![alt text](image-2.png)
+
+- We didnt have to install anything but we have run the project using the docker
+- for stopping the container we have to stop the container from the docker app 
+
+![alt text](image-3.png)
+
+- just hit the stop button 
