@@ -401,3 +401,12 @@ sudo dockerd
 - so we need to do some post installtion if we need to run the docker in pc startup
 
 [post-intallations](https://docs.docker.com/engine/install/linux-postinstall/)
+
+
+## 1-8 Overview of Docker Tools
+
+- For Using Docker we must need is **Docker Engine** which runs in linux. For this reason in our windows we have installed the virtual machine (debian) as windopws do not support linux environment and docker runs in linux environment. Linux just needs the docker engine 
+
+- For sharing works with the teammates **Docker Hub**. This for collaboritive works like github
+- A project might have frontend and backend, database container. For keeping all in a manageable state we use **Docker Compose**
+
