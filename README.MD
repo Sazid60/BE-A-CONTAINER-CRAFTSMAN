@@ -218,3 +218,259 @@ or
 - If docker installation matches pc requirment we can *install docker desktop*
 - If Requirement does not match we can *Install Docker Toolbox*
 - If we are *linux* user we need none of these because linux supprts docker by default and docker runs on linux environment. we will directly install docker engine in linux and using the terminal we can use it.
+
+## 1-5 Docker Installation [Windows]
+
+[Link](https://docs.docker.com/desktop/setup/install/windows-install/)
+
+- for installing the docker we need *wls - windows subsystem for linux, hyper-v* because we know docker works in linux environment so by default linux supports docker but the windows is not a part or related to linux operating system. wls - windows subsystem for linux, hyper-v using these we are able to install in windows.
+- in search bar we will search features -> turn windows features on or off -> 
+
+![alt text](image.png)
+ 
+
+- after this we will tick the *windows subsystem for linux* and *vitual machine platform*
+- Restart is required
+
+### Wsl Install
+- there is a documantion of microsoft wor installing for wsl 
+
+[Wls-Installation](https://learn.microsoft.com/en-us/windows/wsl/install)
+
+- in powershell
+
+```
+wsl --install
+```
+- This will by default install ubuntu but we will install Debian 
+
+```
+wsl --install -d Debian
+```
+- register using password 
+
+```
+username : sazid
+passowrd : 
+```
+
+- for logout 
+
+```
+exit
+```
+
+- now download the docker 
+
+[download-docker](https://docs.docker.com/desktop/setup/install/windows-install/)
+
+- dwonload and install 
+
+```
+docker --version
+```
+
+- it will show docker 
+
+```
+docker --help
+```
+- this will show all docker commands 
+
+## 1-7 Docker Installation [Linux]
+
+- Leyts install docker in ubuntu 
+
+[manual](https://docs.docker.com/manuals)
+
+- the confusion is what should we install? docker engine or docker desktop.
+- Docker engine is the thing that docker runs behind the scene (docker core)
+- Docker Descktop is just a Docker GUI 
+- The situation is like we are connection with the server through terminal in here docker engine is required. 
+- If we want to see in gui then we will use the docker desktop 
+
+- first we will install the engine 
+
+### Installation Steps 
+
+- we need to install genome terminal for this 
+
+[docker-for-ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+
+
+```
+sudo apt remove $(dpkg --get-selections docker.io docker-compose docker-compose-v2 docker-doc podman-docker containerd runc | cut -f1)
+```
+
+- clear all dependencies 
+
+```
+# Add Docker's official GPG key:
+sudo apt update
+sudo apt install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+
+sudo apt update
+```
+
+- Install the latest version 
+
+```
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+
+
+- lets check
+
+```
+docker --version
+```
+- see the running process
+
+```
+sudo docker ps 
+```
+
+```
+sudo docker run hello-world
+```
+
+- First it will see if available it will run if not available it will try to pull 
+
+- Docker engine installion done 
+
+#### Lets install the gui for ubuntu 
+
+[GUI-INSTLLATION](https://docs.docker.com/desktop/setup/install/linux/ubuntu/)
+
+- install the genome terminal 
+
+```
+sudo apt install gnome-terminal
+```
+
+- download the DEB package 
+
+```
+sudo apt-get update
+sudo apt-get install ./docker-desktop-amd64.deb
+```
+
+- then from the forlder open the terminal and install it 
+
+```
+sudo apt-get install ./docker-desktop-amd64.deb
+```
+
+
+- By default we wneed to write 
+
+```
+sudo docker ps 
+```
+
+- if we write only 
+
+```
+docker ps
+```
+- it will not run 
+
+- if it does not run even after writing sudo we have to write 
+
+
+```
+sudo dockerd
+```
+- this will run the docker demon 
+
+-  by default docker gets bind with the unix socket for this reason it is just accessable with the root user only 
+
+- so we need to do some post installtion if we need to run the docker in pc startup
+
+[post-intallations](https://docs.docker.com/engine/install/linux-postinstall/)
+
+
+## 1-8 Overview of Docker Tools
+
+- For Using Docker we must need is **Docker Engine** which runs in linux. For this reason in our windows we have installed the virtual machine (debian) as windopws do not support linux environment and docker runs in linux environment. Linux just needs the docker engine 
+
+- For sharing works with the teammates **Docker Hub**. This for collaboritive works like github
+- A project might have frontend and backend, database container. For keeping all in a manageable state we use **Docker Compose**
+
+## 1-9 Configuring VS Code & Creating The First Container
+
+- lets do the magic with the docker 
+
+
+```
+Dockerfile
+```
+- add docker file in root 
+
+- inside the file
+
+#### Use the official Node.js 20 image as the base image
+FROM node:20
+
+#### Set the working directory inside the container
+#### All subsequent commands will run from this directory
+WORKDIR /app
+
+#### Copy only package.json first
+#### This allows Docker to cache npm install if dependencies don’t change
+COPY package.json .
+
+#### Install all project dependencies
+RUN npm install
+
+#### Copy the rest of the application source code
+COPY . .
+
+#### Expose port 5000 to allow external access to the app
+EXPOSE 5000
+
+#### Define the command to start the application
+#### Runs app.mjs using Node.js when the container starts
+CMD ["node", "app.mjs"]
+
+
+- now make a image for the container 
+
+
+```
+docker build .  
+```
+- we have to define the port that means using the 5000 port run inside the container 
+- Containetr is an isolated environment and with the container our system has not connection 
+- To communicate with the container we have to define the port that server should run 
+![alt text](image-1.png)
+
+
+- using the image id run the project 
+
+```
+docker run -p 5000:5000 sha256:d029c9c813f65cf837a542f0c5296bf5bef106fb8f496b70e422c7721984045f
+```
+- -p represents the port connection 
+
+![alt text](image-2.png)
+
+- We didnt have to install anything but we have run the project using the docker
+- for stopping the container we have to stop the container from the docker app 
+
+![alt text](image-3.png)
+
+- just hit the stop button 
