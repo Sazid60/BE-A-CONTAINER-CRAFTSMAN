@@ -212,3 +212,9 @@ or
 -  Suppose we have both linux and windows. both works seperaterly and has no communication between them. The virtual machine works in the same isoloated way.
 -  we can do the works of docker using virtual machine. Its like we have created a project in virtual machine and shared within the employyes and they will will run the project in the same virtual machine. 
 -  *Then why we do not use virtual machine instead of docker?* : We can create a project keep the libraries dependencies tols and shate the os. The problem is we can  create one project in one virtual machine but we need to work in multiple projects and for each project we need one virtual machine which will cause storage shortage.*How Docker helps?* : docker works in the same way in our operating system using docker engine. The key differences in docker is not creating any seperate operating system. for this reason storage for operating system is not required. Basically for a project we are making a container and string the libraries tools and dependencies and the container will hold the project. we can create multiple container for multiple projects and share to everyone in form of **image** which is docker term. when a project is not needed we can delete the container. again we can get the project project by using the image. In case of virtual machine if we delete a project we will have to build the same project in the virtual machine from scratch. 
+
+
+## 1-4 Docker Setup
+- If docker installation matches pc requirment we can *install docker desktop*
+- If Requirement does not match we can *Install Docker Toolbox*
+- If we are *linux* user we need none of these because linux supprts docker by default and docker runs on linux environment. we will directly install docker engine in linux and using the terminal we can use it.
