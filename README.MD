@@ -218,3 +218,61 @@ or
 - If docker installation matches pc requirment we can *install docker desktop*
 - If Requirement does not match we can *Install Docker Toolbox*
 - If we are *linux* user we need none of these because linux supprts docker by default and docker runs on linux environment. we will directly install docker engine in linux and using the terminal we can use it.
+
+## 1-5 Docker Installation [Windows]
+
+[Link](https://docs.docker.com/desktop/setup/install/windows-install/)
+
+- for installing the docker we need *wls - windows subsystem for linux, hyper-v* because we know docker works in linux environment so by default linux supports docker but the windows is not a part or related to linux operating system. wls - windows subsystem for linux, hyper-v using these we are able to install in windows.
+- in search bar we will search features -> turn windows features on or off -> 
+
+![alt text](image.png)
+ 
+
+- after this we will tick the *windows subsystem for linux* and *vitual machine platform*
+- Restart is required
+
+### Wsl Install
+- there is a documantion of microsoft wor installing for wsl 
+
+[Wls-Installation](https://learn.microsoft.com/en-us/windows/wsl/install)
+
+- in powershell
+
+```
+wsl --install
+```
+- This will by default install ubuntu but we will install Debian 
+
+```
+wsl --install -d Debian
+```
+- register using password 
+
+```
+username : sazid
+passowrd : 
+```
+
+- for logout 
+
+```
+exit
+```
+
+- now download the docker 
+
+[download-docker](https://docs.docker.com/desktop/setup/install/windows-install/)
+
+- dwonload and install 
+
+```
+docker --version
+```
+
+- it will show docker 
+
+```
+docker --help
+```
+- this will show all docker commands 
