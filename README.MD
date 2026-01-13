@@ -124,3 +124,11 @@ or
 
 ---
 
+## 2-1 What is Images & Containers?
+
+- While creating a project docker provides a container. By running the container we can run our project.we have already done a project and build an image 
+
+### What is image? 
+- Docker  gives us a container which means a unit of software which holds the codes and the environment for running the code. For running this container we need a blueprint. This blue print is called image. The image holds the codes and the environment. Using the same image we can run multiple container (create and manage). Suppose we have an image that we have built on node.js and this is a node.js project. we can create multiple container of this project and and run separately. We can share the exact container within team mate and it will work smoothly and show output.
+-  **Interesting fact about the image is :**  The image is read only and we can not change the code. But when we create a container using the image we can do both read and write. Image is a static paper which is the blueprint. 
+
